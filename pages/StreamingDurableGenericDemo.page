@@ -1,4 +1,4 @@
-<apex:page controller="StreamingReplayController">
+<apex:page controller="StreamingGenericReplayController">
      <apex:includeScript value="{!$Resource.jquery}"/>
     <script>
         var $j = jQuery.noConflict();
@@ -45,7 +45,7 @@
     </apex:pageBlock>
     <apex:pageBlock title="Notifications">
         <apex:outputPanel id="StreamingReplay" >
-            <c:StreamingMessageDisplay channel="{!channel}" replayFrom="{!replayFrom}" />
+            <c:StreamingGenericMessageDisplay channel="{!channel}" replayFrom="{!replayFrom}" />
         </apex:outputPanel>
     </apex:pageBlock>
 </apex:page>
