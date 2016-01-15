@@ -1,11 +1,11 @@
-# Salesforce Generic Streaming v2 Demo
-This repository contains all the code you need to set up a Generic Streaming v2 client inside of a Visualforce page in your Salesforce Org.  The Generic Streaming v2 adds the capability to replay any of the messages sent to the Generic Channel for the last 24 hours.
+# Salesforce Durable Generic Streaming Demo
+This repository contains all the code you need to set up a Durable Generic Streaming client inside of a Visualforce page in your Salesforce Org.  The Durable Generic Streaming adds the capability to replay any of the messages sent to the Generic Channel for the last 24 hours.
 
-This is handled through the use of an Event ID.  Every event sent through the Generic Streaming system will have an associated ID.  With v2, you will have the ability to provide an Event ID (ostensibly the last ID that your client has received) and the system will send every event that has happened in the last 24 hours after that specific ID.
+This is handled through the use of an Event ID.  Every event sent through the Generic Streaming system will have an associated ID.  With durability, you will have the ability to provide an Event ID (ostensibly the last ID that your client has received) and the system will send every event that has happened in the last 24 hours after that specific ID.
 
 If you do not provide and ID, or the ID you provide is -1, your client will be subscribed to the tip of the queue (you will receive all new messages.  If you provide an ID of -2, we resend ALL events that happened in the last 24 hours.  
 
-Please note that this is a current Beta feature in Salesforce, and in order to sucessfully subscribe to the v2 Channel, you will need to have your org enabled for the new feature.  To do so, please contact jhurst@salesforce.com. 
+Please note that this is a current Beta feature in Salesforce, and in order to sucessfully subscribe to a durable channel, you will need to have your org enabled for the new feature.  To do so, please contact jhurst@salesforce.com. 
 
 ## Demo Instructions
 1. Download this repo as zip file
@@ -14,7 +14,6 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 3. Assign the included StreamingV2Demo permission set to your user
 4. Create the `/u/TestStreaming` StreamingChannel by subscribing to that channel name
     * You can create the channel by using the Workbench and going to Queries > Streaming Push Topics and selecting Generic Subscriptions.  Enter the subscription as `/u/TestStreaming` and click 'Subscribe' (this will create the channel)
-    * You can also create the channel by using the "Streaming Channels" tab (you probably have to click the + to pull up the main tab list), and then from the "Streaming Channels" section create a new record.
 5. Push an event to the new channel
     * Query the ID of the channel by using the Workbench REST Explorer and doing a GET to `/services/data/v35.0/sobjects/StreamingChannel`.  In thenRecentItems response, you should see the ID for `/u/TestStreaming`
     * Do a POST to `/services/data/v35.0/sobjects/StreamingChannel/<CHANNEL_ID>/push` with a payload of:
@@ -32,7 +31,7 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 ## Open Issues to Remember
 1. This is still a Salesforce Beta Feature
     * It needs to be enabled manually on every org
-    * Issues should be communicated directly to te Product Manager, Jay Hurst (jhurst@salesforce.com)
+    * Issues should be communicated directly to the Product Manager, Jay Hurst (jhurst@salesforce.com)
 2. You have to push at least one event to a channel in order for the channel to work with v2.  This is resolved with the Spring'16 release
 3. You cannot replay using an ID outside of your event stream window (if you provide an ID from 2 weeks ago, it will be invalid)
 4. The current event stream window is 24 hours
