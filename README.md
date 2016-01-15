@@ -11,7 +11,7 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 1. Download this repo as zip file
     * This contains all of the needed code to run the client inside of Salesforce
 2. Deploy the code to an enabled Winter '16 org using the MdAPI through Workbench, Force.com IDE, or Ant Migration Tool
-3. Assign the included StreamingV2Demo permission set to your user
+3. Assign the included StreamingDurableGenericDemo permission set to your user
 4. Create the `/u/TestStreaming` StreamingChannel by subscribing to that channel name
     * You can create the channel by using the Workbench and going to Queries > Streaming Push Topics and selecting Generic Subscriptions.  Enter the subscription as `/u/TestStreaming` and click 'Subscribe' (this will create the channel)
 5. Push an event to the new channel
