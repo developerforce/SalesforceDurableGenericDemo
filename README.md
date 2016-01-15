@@ -14,9 +14,10 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 3. Assign the included StreamingV2Demo permission set to your user
 4. Create the `/u/TestStreaming` StreamingChannel by subscribing to that channel name
     * You can create the channel by using the Workbench and going to Queries > Streaming Push Topics and selecting Generic Subscriptions.  Enter the subscription as `/u/TestStreaming` and click 'Subscribe' (this will create the channel)
+    * You can also create the channel by using the "Streaming Channels" tab (you probably have to click the + to pull up the main tab list), and then from the "Streaming Channels" section create a new record.
 5. Push an event to the new channel
-    * Query the ID of the channel by using the Workbench REST Explorer and doing a GET to /services/data/v35.0/sobjects/StreamingChannel.  In thenRecentItems response, you should see the ID for `/u/TestStreaming`
-    * Do a POST to /services/data/v35.0/sobjects/StreamingChannel/<CHANNEL_ID>/push with a payload of:
+    * Query the ID of the channel by using the Workbench REST Explorer and doing a GET to `/services/data/v35.0/sobjects/StreamingChannel`.  In thenRecentItems response, you should see the ID for `/u/TestStreaming`
+    * Do a POST to `/services/data/v35.0/sobjects/StreamingChannel/<CHANNEL_ID>/push` with a payload of:
         * `{ "pushEvents": [{"payload": "first push"} ]}`  
 6. Navigate to `/apex/StreamingV2Demo`.  This Visualforce page will auto-subscribe to `/u/TestStreaming` using Generic Streaming v2 
     * This could fail if you haven't created the streaming channel and haven't pushed at least 1 event to that channel)
