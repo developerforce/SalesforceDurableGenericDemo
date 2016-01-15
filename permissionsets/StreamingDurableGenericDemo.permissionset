@@ -4,7 +4,7 @@
         <apexClass>StreamingGenericReplayController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <label>StreamingV2Demo</label>
+    <label>StreamingDurableGenericDemo</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
