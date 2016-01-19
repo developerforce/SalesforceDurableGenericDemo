@@ -14,6 +14,7 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 3. Assign the included StreamingDurableGenericDemo permission set to your user
 4. Create the `/u/TestStreaming` StreamingChannel by subscribing to that channel name
     * You can create the channel by using the Workbench and going to Queries > Streaming Push Topics and selecting Generic Subscriptions.  Enter the subscription as `/u/TestStreaming` and click 'Subscribe' (this will create the channel)
+    * You can also create the StreamingChannel in the Salesforce UI.  See the [Generic Streaming Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/create_a_streaming_channel.htm) for more information
 5. Push an event to the new channel
     * Query the ID of the channel by using the Workbench REST Explorer and doing a GET to `/services/data/v35.0/sobjects/StreamingChannel`.  In thenRecentItems response, you should see the ID for `/u/TestStreaming`
     * Do a POST to `/services/data/v35.0/sobjects/StreamingChannel/<CHANNEL_ID>/push` with a payload of:
