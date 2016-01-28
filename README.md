@@ -11,7 +11,7 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 1. Download this repo as zip file
     * This contains all of the needed code to run the client inside of Salesforce
 2. Deploy the code to an enabled Winter '16 org using the MdAPI through Workbench, Force.com IDE, or Ant Migration Tool
-3. Assign the included StreamingV2Demo permission set to your user
+3. Assign the included StreamingDurableGenericDemo permission set to your user
 4. Create the `/u/TestStreaming` StreamingChannel by subscribing to that channel name
     * You can create the channel by using the Workbench and going to Queries > Streaming Push Topics and selecting Generic Subscriptions.  Enter the subscription as `/u/TestStreaming` and click 'Subscribe' (this will create the channel)
     * You can also create the StreamingChannel in the Salesforce UI.  See the [Generic Streaming Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/create_a_streaming_channel.htm) for more information
@@ -19,7 +19,7 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
     * Query the ID of the channel by using the Workbench REST Explorer and doing a GET to `/services/data/v35.0/sobjects/StreamingChannel`.  In thenRecentItems response, you should see the ID for `/u/TestStreaming`
     * Do a POST to `/services/data/v35.0/sobjects/StreamingChannel/<CHANNEL_ID>/push` with a payload of:
         * `{ "pushEvents": [{"payload": "first push"} ]}`  
-6. Navigate to `/apex/StreamingV2Demo`.  This Visualforce page will auto-subscribe to `/u/TestStreaming` using Generic Streaming v2 
+6. Navigate to `/apex/StreamingDurableGenericDemo`.  This Visualforce page will auto-subscribe to `/u/TestStreaming` using Durable Generic Streaming  
     * This could fail if you haven't created the streaming channel and haven't pushed at least 1 event to that channel)
 7. Generate new events using on-page controls. 
     * You can also push new events through the REST API per the standard [Generic Streaming documentation](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/resources_push.htm)
@@ -33,6 +33,6 @@ Please note that this is a current Beta feature in Salesforce, and in order to s
 1. This is still a Salesforce Beta Feature
     * It needs to be enabled manually on every org
     * Issues should be communicated directly to the Product Manager, Jay Hurst (jhurst@salesforce.com)
-2. You have to push at least one event to a channel in order for the channel to work with v2.  This is resolved with the Spring'16 release
+2. You have to push at least one event to a channel in order for the channel to work with durable generic streaming.  This is resolved with the Spring'16 release
 3. You cannot replay using an ID outside of your event stream window (if you provide an ID from 2 weeks ago, it will be invalid)
 4. The current event stream window is 24 hours

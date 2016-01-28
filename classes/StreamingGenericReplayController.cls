@@ -1,10 +1,10 @@
-public class StreamingReplayController {
+public class StreamingGenericReplayController {
 
     public String channel{get; private set;}
     public Id channelId{get; private set;}
     public Integer replayFrom{get;set;}
     
-    public StreamingReplayController() {
+    public StreamingGenericReplayController() {
         this.channel = '/u/TestStreaming';
         this.replayFrom = -2;
         this.channelId = getStreamingChannelId(this.channel).Id;

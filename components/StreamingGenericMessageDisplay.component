@@ -6,7 +6,7 @@
     <apex:includeScript value="{!$Resource.cometdReplayExtension}"/>
     
     
-    <apex:attribute name="channel" id="channel" description="Streaming Channel" type="String" required="true"/>
+    <apex:attribute name="channel" id="channel" description="Generic Streaming Channel" type="String" required="true"/>
     <apex:attribute name="replayFrom" id="replayFrom" description="Event Id to Replay From" type="Integer" required="true"/>
 
     <script type="text/javascript">
@@ -23,7 +23,7 @@
                  cometd.unregisterExtension(REPLAY_FROM, replayExtension);                 
              }
 
-            // register streaming v2 replayFrom extension
+            // register durable generic streaming replayFrom extension
              var replayExtension = new cometdReplayExtension();
              replayExtension.setChannel(channel);
              replayExtension.setReplay('{!replayFrom}');
